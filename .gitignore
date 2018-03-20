@@ -8,3 +8,5 @@ php.ini
 */cache/
 backup.sql
 readme.html
+/wp-content/uploads/
+/wp-content/plugins/
