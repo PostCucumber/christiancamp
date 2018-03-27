@@ -77,12 +77,13 @@ function cr_drop_print_shortcode($atts)
 
 }
 
-function remove_vc_scripts(){
-    wp_enqueue_script('prettyphoto' );
-    wp_deregister_script('prettyphoto' );
+function remove_vc_scripts()
+{
+    wp_enqueue_script('prettyphoto');
+    wp_deregister_script('prettyphoto');
 }
 
-add_action( 'wp_enqueue_scripts', 'remove_vc_scripts', 100 );
+add_action('wp_enqueue_scripts', 'remove_vc_scripts', 100);
 
 
 add_shortcode('drop', function ($atts) {
@@ -182,11 +183,12 @@ function cr_accommodations_print_shortcode($atts)
     ], $atts));
 
     $post_query_options = [
-        'post_type'      => 'accommodation',
-        'order'          => 'DESC',
-        'orderby'        => 'date',
-        'posts_per_page' => -1,
-        'category_name'  => $atts['category']
+        'post_type'        => 'accommodation',
+        'order'            => 'ASC',
+        'orderby'          => 'menu_order',
+        'posts_per_page'   => -1,
+        'category_name'    => $atts['category'],
+        'include_children' => false
     ];
 
     $post_query      = new WP_Query($post_query_options);
