@@ -187,8 +187,7 @@ function cr_accommodations_print_shortcode($atts)
         'order'            => 'ASC',
         'orderby'          => 'menu_order',
         'posts_per_page'   => -1,
-        'category_name'    => $atts['category'],
-        'include_children' => false
+        'category_name'    => $atts['category']
     ];
 
     $post_query      = new WP_Query($post_query_options);
