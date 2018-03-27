@@ -77,9 +77,15 @@ function cr_drop_print_shortcode($atts)
 
 }
 
+function remove_vc_scripts(){
+    wp_enqueue_script('prettyphoto' );
+    wp_deregister_script('prettyphoto' );
+}
 
-add_shortcode( 'drop', function ($atts)
-{
+add_action( 'wp_enqueue_scripts', 'remove_vc_scripts', 100 );
+
+
+add_shortcode('drop', function ($atts) {
     extract(shortcode_atts([
         'category' => ''
     ], $atts));
@@ -100,15 +106,15 @@ add_shortcode( 'drop', function ($atts)
 
     foreach ($post_collection as $post_resul) {
         //template
-//        $_product = wc_get_product($post_resul->ID);
+        //        $_product = wc_get_product($post_resul->ID);
         $post_tpl = '<option value="%s">%s</option>';
-         get_permalink($post_resul->ID);
-         $post_resul->post_excerpt;
-         $post_resul->post_title;
-         $post_resul->post_content;
-         $post_resul->post_name;
-         apply_filters('the_content', $post_resul->post_content);
-         get_the_post_thumbnail( $post_resul->ID, "full" );
+        get_permalink($post_resul->ID);
+        $post_resul->post_excerpt;
+        $post_resul->post_title;
+        $post_resul->post_content;
+        $post_resul->post_name;
+        apply_filters('the_content', $post_resul->post_content);
+        get_the_post_thumbnail($post_resul->ID, "full");
         $out .= sprintf($post_tpl, get_permalink($post_resul->ID), $post_resul->post_title);
     }
     $out .= '</select>';
@@ -159,8 +165,8 @@ function cr_product_print_shortcode($atts)
         get_the_post_thumbnail($post_resul->ID, "full");
         $out .= sprintf($post_tpl, get_the_post_thumbnail($post_resul->ID, "full"), $post_resul->post_title,
             get_permalink($post_resul->ID));
-//        $out .= sprintf($post_tpl, get_the_post_thumbnail($post_resul->ID, "full"), $post_resul->post_title,
-//            $_product->get_price(), get_permalink($post_resul->ID));
+        //        $out .= sprintf($post_tpl, get_the_post_thumbnail($post_resul->ID, "full"), $post_resul->post_title,
+        //            $_product->get_price(), get_permalink($post_resul->ID));
     }
     $out .= '</div></div>';
 
