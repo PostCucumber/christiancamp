@@ -5,8 +5,8 @@ tags
 .user.ini
 php.ini
 *error_log
-*/cache/
+*/cache
 backup.sql
 readme.html
-/wp-content/uploads/
-/wp-content/plugins/
+/wp-content/uploads
+/wp-content/plugins
